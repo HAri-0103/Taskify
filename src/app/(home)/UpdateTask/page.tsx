@@ -11,28 +11,37 @@ type Task ={
     taskPriority:string,
     taskDueDate:string,
     taskStatus:string
-  }
+}
 
 export default function Update() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <UpdateTask />
+        </Suspense>
+    );
+}
+
+function UpdateTask() {
     const search  = useSearchParams();
     const [task, setTask] = useState<Task>()
-    const updateTask = async()=>{
+
+    const updateTask = async() => {
         try {
             const res = await axios.get(`/api/Task/Update?id=${search.get("id")}`);
-            setTask(res.data.task)
+            setTask(res.data.task);
         } catch (error:any) {
-            console.log(error)
+            console.log(error);
         }
-    }
-    useEffect(()=>{
-        updateTask()
-    },[])
+    };
+
+    useEffect(() => {
+        updateTask();
+    }, []);
+
     return (
-        <Suspense>
-            <div className="absolute top-24 w-full  grid grid-flow-row justify-items-center gap-y-5">
-                <h1 className="text-4xl font-bold ">Update Task</h1>
-                <TaskForm post={task} action="Update"/>
-            </div>
-        </Suspense>
-    )
+        <div className="absolute top-24 w-full  grid grid-flow-row justify-items-center gap-y-5">
+            <h1 className="text-4xl font-bold ">Update Task</h1>
+            <TaskForm post={task} action="Update"/>
+        </div>
+    );
 }
