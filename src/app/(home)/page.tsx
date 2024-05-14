@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div className="fixed w-screen h-screen flex justify-start">
         <div className="absolute top-24 w-full h-screen grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5 md:grid-cols-2 md:justify-items-center lg:grid-cols-3">
-          {tasks.length>0?({tasks}.tasks.map((task,index)=><Taskcard key={index} task={task}/>))
+          {tasks?(tasks.map((task,index)=><Taskcard key={index} task={task}/>))
           :"There is No Task"}
         </div>
     </div>
