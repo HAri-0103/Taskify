@@ -41,7 +41,7 @@ export default function Topbar() {
                     <h1 className=" text-3xl font-bold">T<span className="text-lg">ASKIFY</span></h1>
                     <div className="w-[130px] flex justify-between items-center gap-2">
                     <Link href={`/${tasks.username}`}>
-                        <img src={tasks.avatar} alt="logo" width={50} height={50} className="w-12 h-12 border rounded-full cursor-pointer"/>
+                        <Image src={tasks.avatar} alt="logo" width={50} height={50} className="w-12 h-12 border rounded-full cursor-pointer"/>
                     </Link>
                         <button onClick={logout} className="bg-zinc-700 text-white px-2 py-1 rounded-lg border">Logout</button>
                     </div>
