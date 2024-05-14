@@ -3,11 +3,12 @@ import { User } from "@/Models/UserModel";
 import jwt,{ JwtPayload } from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
+import { cookies } from "next/headers";
 
 export async function GET(req:NextRequest){
     dbConnect();
     try {
-        const cookie = req.cookies.get("token");
+        const cookie = await cookies().get("token");
         const verifyToken: JwtPayload | any = jwt.verify(cookie?.value || "", process.env.JWT_SECRET!);
 
         const importantTasks = await User.aggregate([
