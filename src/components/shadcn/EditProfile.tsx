@@ -19,31 +19,39 @@ import {
 import { Input } from "@/components/ui/input"
 import formSchema from "@/Schema/SignupSchema"
 import FileUploader from "@/components/ui/file-uploader"
-import Link from "next/link"
+import EditProfile from "@/app/(home)/EditProfile/page"
+import editProfileSchema from "@/Schema/EditprofileSchema"
+import { useRouter } from "next/navigation"
 
+type Props = {
+    data: {
+        id:string,
+        username:string,
+        email:string,
+        avatar:string,
+    }
 
+}
 
-export default function SignUpForm() {
+export default function Edit({data}:Props) {
+    const router = useRouter()
     const form = useForm({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(editProfileSchema),
         defaultValues: {
-            avatar: "",
-            username: "",
-            email: "",
-            password: "",
+            avatar: data.avatar,
+            username: data.username,
+            email: data.email,
             },
+            values:data
     })
-    async function submit(values: z.infer<typeof formSchema>) {
-        try {
-          await axios.post("/api/Signup", values)
-          values.avatar= "",
-          values.username= "",
-          values.email= "",
-          values.password= ""
-        } catch (error) {
-          console.error(error)
+    async function submit(values: z.infer<typeof editProfileSchema>) {
+            try {
+                await axios.put(`/api/Signup?id=${data.id}`, values)
+                router.push(`/${values.username}`)
+            } catch (error) {
+                console.error(error)
+            }
         }
-      }
 
   return (
     <Form {...form}>
@@ -55,7 +63,7 @@ export default function SignUpForm() {
             render={({ field }) => (
                 <FormItem className="flex justify-center items-center">
                     <FormControl>
-                        <FileUploader fieldChange={field.onChange} />
+                        <FileUploader fieldChange={field.onChange} img={field.value} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>
@@ -89,31 +97,7 @@ export default function SignUpForm() {
             </FormItem>
           )}
         />
-                <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem className="h-[100px]">
-              <FormLabel className="font-bold text-[16px]">Password</FormLabel>
-              <FormControl>
-                <Input className="border-gray-300 shadow-xl outline-none focus:border-b-blue-500 focus:border-2
-                placeholder:text-gray-500 text-gary-700 text-base font-semibold" type="password" placeholder="*********" {...field} />
-              </FormControl>
-              <FormMessage className="text-red-500" />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600">Submit</Button>
-
-        <FormDescription className="text-center text-gray-500">Already have Account? <Link href={`/Login`} className="text-blue-500">Login</Link></FormDescription>
-
-        <div className="flex items-center gap-5">
-            <hr className="w-[150px] border-t-2 border-gray-300"/>
-            <p>or</p>
-            <hr className="w-[150px] border-t-2 border-gray-300"/>
-        </div>
-
-        <Button className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600">Signup with Google <FcGoogle className="pl-2" size={30} /></Button>
+        <Button type="submit" className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600">Update</Button>
       </form>
       </div>
     </Form>

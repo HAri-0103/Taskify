@@ -20,5 +20,6 @@ export const config = {
     '/',
     '/Login',
     '/Signup',
+    '/Add'
   ],
 }

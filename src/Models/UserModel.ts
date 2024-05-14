@@ -25,7 +25,7 @@ const TaskSchema: Schema<Task> = new Schema({
     },
     taskPriority: {
         type: String, 
-        default: "Low"
+        default: "Not Important"
     },
     taskDueDate: {
         type: Date,
