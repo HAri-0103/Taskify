@@ -16,7 +16,6 @@ export async function GET(req:NextRequest){
             { $match:{ "tasks.taskStatus": "Completed" } },
             {$replaceRoot: {newRoot: "$tasks"}}
         ]);
-        console.log(importantTasks);
         return NextResponse.json({
             status: 200,
             tasks: importantTasks

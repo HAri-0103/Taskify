@@ -9,7 +9,6 @@ export async function GET(req:NextRequest){
     try {
         const cookie = req.cookies.get("token");
         const verifyToken: JwtPayload | any = jwt.verify(cookie?.value || "", process.env.JWT_SECRET!);
-
         const importantTasks = await User.aggregate([
             { $match: { _id: new mongoose.Types.ObjectId(verifyToken.id) } },
             { $unwind: "$tasks" },
