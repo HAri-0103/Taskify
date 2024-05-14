@@ -30,6 +30,7 @@ export default function Completed(){
     },[])
     return (
         <div className="absolute top-24 w-full  grid grid-flow-row justify-items-center gap-y-5">
+          {tasks.map((task,index)=><Taskcard key={index} task={task}/>)}
             <div className="absolute w-full grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5">
                 {tasks?(tasks.map((task,index)=><Taskcard key={index} task={task}/>)):"There is No Task"}
         </div>
