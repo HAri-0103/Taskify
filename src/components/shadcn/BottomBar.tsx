@@ -37,7 +37,7 @@ export default function BottomBar() {
         }
     ]
     return(
-        <div className="fixed bottom-0 h-20 w-screen bg-transparent">
+        <div className="fixed bottom-0 h-20 w-screen bg-transparent z-50">
         <div className="w-full h-full bg-transparent rounded-lg flex justify-center items-center px-3 backdrop-blur-sm border shadow-[-10px_-20px_30px_4px_rgba(0,0,0,0.20),_10px_10px_30px_4px_rgba(45,78,255,0.15)] z-40">
             <div className="w-full flex justify-between items-center px-5">
                 {navBarLinks.map((item) => (
