@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input"
 import formSchema from "@/Schema/SignupSchema"
 import FileUploader from "@/components/ui/file-uploader"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 
 
