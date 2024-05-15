@@ -43,12 +43,12 @@ export default function SignUpForm() {
   return (
     <Form {...form}>
       <div className="w-screen h-screen flex justify-center mt-7">
-      <form onSubmit={form.handleSubmit(submit)} className="w-[400px] h-[400px] px-10 py-10 bg-gray-200/40 shadow-xl shadow-black/25 rounded-md space-y-2 flex flex-col">
+      <form onSubmit={form.handleSubmit(submit)} className="w-[400px] h-[450px] px-10 py-10 bg-gray-200/40 shadow-xl shadow-black/25 rounded-md space-y-2 flex flex-col">
                 <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="h-[100px]">
+            <FormItem className="h-[100px] border">
               <FormLabel className="font-bold text-[16px]">EmailId</FormLabel>
               <FormControl>
                 <Input className="border-gray-300 shadow-xl outline-none focus:border-b-blue-500 focus:border-2
@@ -80,7 +80,7 @@ export default function SignUpForm() {
             <p>or</p>
             <hr className="w-[150px] border-t-2 border-gray-300"/>
         </div>
-        <Button className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600">Login with Google <FcGoogle className="pl-2" size={30} /></Button>
+        <Button className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600 cursor-not-allowed">Login with Google <FcGoogle className="pl-2" size={30} /></Button>
       </form>
       </div>
     </Form>

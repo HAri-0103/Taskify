@@ -3,6 +3,7 @@ import { JwtPayload } from 'jsonwebtoken';
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import jwt from 'jsonwebtoken'
+export { auth  } from "@/lib/auth"
  
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -20,6 +21,11 @@ export const config = {
     '/',
     '/Login',
     '/Signup',
-    '/Add'
+    '/Add',
+    '/Important',
+    '/Completed',
+    '/UpdateTask',
+    '/[name]',
+    '/EditProfile'
   ],
 }

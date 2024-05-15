@@ -11,9 +11,9 @@ export async function POST(req:Request){
     try {
         const {email,password} = await req.json();
         const user = await User.findOne({email:email});
-        if(!email){
+        if(!user){
             return NextResponse.json({
-                message:"Invalid Input"
+                message:"Invalid User"
             },{status:400})
         }
         const passwordMatch = await bcrypt.compare(password,user.password);

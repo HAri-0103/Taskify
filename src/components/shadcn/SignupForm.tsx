@@ -113,7 +113,7 @@ export default function SignUpForm() {
             <hr className="w-[150px] border-t-2 border-gray-300"/>
         </div>
 
-        <Button className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600">Signup with Google <FcGoogle className="pl-2" size={30} /></Button>
+        <Button className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600 cursor-not-allowed">Signup with Google <FcGoogle className="pl-2" size={30} /></Button>
       </form>
       </div>
     </Form>
