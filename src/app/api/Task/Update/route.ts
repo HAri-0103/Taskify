@@ -1,5 +1,7 @@
 import { dbConnect } from "@/DbConfig/dbConfig";
 import { User } from "@/Models/UserModel";
+import jwt,{ JwtPayload } from "jsonwebtoken";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req:NextRequest){
@@ -57,7 +59,9 @@ export async function DELETE(req:NextRequest){
     const url = new URL(req.nextUrl);
     try {
         const id = url.searchParams.get("id");
-        const task = await User.findOneAndUpdate({},{$pull:{tasks:{_id:id}}},{new:true});
+        const cookie = cookies().get("token");
+        const verifyToken: JwtPayload | any = jwt.verify(cookie?.value || "", process.env.JWT_SECRET!);
+        const task = await User.findOneAndUpdate({_id:verifyToken.id},{$pull:{tasks:{_id:id}}},{new:true});
         return NextResponse.json({
             status: 200,
         })

@@ -31,7 +31,7 @@ export default function ImpotantTask(){
     return (
         <div className="absolute top-24 w-full  grid grid-flow-row justify-items-center gap-y-5">
             <div className="absolute w-full grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5 md:grid-cols-2 md:justify-items-center lg:grid-cols-3">
-                {tasks?(tasks.map((task,index)=><Taskcard key={index} task={task}/>)):"There is No Task"}
+                {tasks.length>0?(tasks.map((task,index)=><Taskcard key={index} task={task}/>)):"There is No Task"}
         </div>
 
         </div>
