@@ -28,7 +28,7 @@ export default function Update() {
         updateTask()
     },[])
     return (
-        <div className="absolute top-24 w-full  grid grid-flow-row justify-items-center gap-y-5">
+        <div className="absolute top-24 w-full  grid grid-flow-row justify-items-center gap-y-5 pb-20">
                 <h1 className="text-4xl font-bold ">Update Task</h1>
                 <TaskForm post={task} action="Update"/>
             </div>
