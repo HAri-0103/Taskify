@@ -112,7 +112,7 @@ export default function TaskForm({post,action}: TaskFormProps) {
           name="taskDueDate"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg font-bold" >Task Description</FormLabel>
+              <FormLabel className="text-lg font-bold" >Task DueDate</FormLabel>
               <FormControl>
                 <Input type="date" {...field} value={field.value||""}/>
               </FormControl>
