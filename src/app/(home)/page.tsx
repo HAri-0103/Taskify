@@ -2,6 +2,7 @@
 import { useState,useEffect } from "react";
 import Taskcard from "@/components/shadcn/TaskCard";
 import axios from "axios";
+import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
 
 type Task ={
   _id:string,
@@ -25,12 +26,20 @@ export default function Home() {
   useEffect(()=>{
     data()
   },[])
+  const control = useDragControls();
+  function startDrag(event:any) {
+      control.start(event)
+    }
   return (
-    <div className="fixed w-screen h-screen flex justify-start">
+    <AnimatePresence>
+      <div className="fixed w-screen h-screen flex justify-start">
+      <Reorder.Group values={tasks} onReorder={setTasks}>
         <div className="absolute top-24 w-full h-screen grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5 md:grid-cols-2 md:justify-items-center lg:grid-cols-3">
-          {tasks?(tasks.map((task,index)=><Taskcard key={index} task={task}/>))
-          :"There is No Task"}
+            {tasks?(tasks.map((task,index)=><Reorder.Item key={task._id} value={task} drag dragControls={control} onPointerDown={startDrag} style={{ touchAction: "none" }}><Taskcard key={index} task={task}/></Reorder.Item>))
+            :"There is No Task"}
         </div>
+        </Reorder.Group>
     </div>
+    </AnimatePresence>
   );
 }
