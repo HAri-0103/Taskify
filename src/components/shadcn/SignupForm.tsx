@@ -20,10 +20,12 @@ import { Input } from "@/components/ui/input"
 import formSchema from "@/Schema/SignupSchema"
 import FileUploader from "@/components/ui/file-uploader"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 
 
 export default function SignUpForm() {
+  const router = useRouter()
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -40,6 +42,7 @@ export default function SignUpForm() {
           values.username= "",
           values.email= "",
           values.password= ""
+          router.push("/")
         } catch (error) {
           console.error(error)
         }
