@@ -35,7 +35,7 @@ export default function Home() {
       <div className="fixed w-screen h-screen flex justify-start">
       <Reorder.Group values={tasks} onReorder={setTasks} axis="y">
         <div className="absolute top-24 w-full h-screen grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5 md:grid-cols-2 md:justify-items-center lg:grid-cols-3">
-            {tasks?(tasks.map((task,index)=><Reorder.Item key={task._id} value={task} drag ><Taskcard key={index} task={task}/></Reorder.Item>))
+            {tasks.length>0?(tasks.map((task,index)=><Reorder.Item key={task._id} value={task} drag ><Taskcard key={index} task={task}/></Reorder.Item>))
             :"There is No Task"}
         </div>
         </Reorder.Group>
