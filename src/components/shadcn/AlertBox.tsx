@@ -34,7 +34,7 @@ export default function AlertDialogDemo({task}:TaskCardProps) {
     }
     return (
       <AlertDialog>
-        <AlertDialogTrigger asChild className={`border-none ${task.taskStatus==="Pending"?"bg-red-600 hover:bg-red-500 hover:scale-95":"bg-green-600 hover:bg-green-500 hover:scale-95"}`}>
+        <AlertDialogTrigger asChild className={`border-none text-white ${task.taskStatus==="Pending"?"bg-red-600 hover:bg-red-500 hover:scale-95":"bg-green-600 hover:bg-green-500 hover:scale-95"}`}>
           <Button variant="outline">{task.taskStatus}</Button>
         </AlertDialogTrigger>
         <AlertDialogContent className="absolute top-28 bg-black text-white">

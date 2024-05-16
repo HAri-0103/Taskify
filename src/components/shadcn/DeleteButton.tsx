@@ -34,7 +34,7 @@ import axios from "axios"
     }
     return (
         <AlertDialog>
-                <AlertDialogTrigger asChild className={`border-none bg-red-600 hover:bg-red-500 hover:scale-95`}>
+                <AlertDialogTrigger asChild className={`border-none bg-red-600 hover:bg-red-500 hover:scale-95 text-white`}>
                 <Button variant="outline">Delete</Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent className="absolute top-28 bg-black text-white">
