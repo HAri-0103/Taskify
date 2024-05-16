@@ -21,6 +21,7 @@ import formSchema from "@/Schema/SignupSchema"
 import FileUploader from "@/components/ui/file-uploader"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import toast, { Toaster } from "react-hot-toast"
 
 
 
@@ -37,7 +38,11 @@ export default function SignUpForm() {
     })
     async function submit(values: z.infer<typeof formSchema>) {
         try {
-          await axios.post("/api/Signup", values)
+          await toast.promise(axios.post("/api/Signup", values),{
+            loading: "Signing Up...",
+            success: "Signup Successful",
+            error: "User Already Exist",
+          })
           values.avatar= "",
           values.username= "",
           values.email= "",
@@ -45,6 +50,7 @@ export default function SignUpForm() {
           router.push("/")
         } catch (error) {
           console.error(error)
+          toast.error("Something went Wrong!")
         }
       }
 
@@ -119,6 +125,7 @@ export default function SignUpForm() {
         <h1 className="w-full flex justify-center items-center p-1 rounded-lg font-bold text-center bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600 cursor-not-allowed">Signup with Google <FcGoogle className="pl-2" size={30} /></h1>
       </form>
       </div>
+      <Toaster />
     </Form>
   )
 }

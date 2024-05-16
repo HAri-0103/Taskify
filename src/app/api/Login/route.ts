@@ -12,14 +12,11 @@ export async function POST(req:Request){
         const {email,password} = await req.json();
         const user = await User.findOne({email:email});
         if(!user){
-            return NextResponse.json({
-                message:"Invalid User"
-            },{status:400})
+            return NextResponse.json({error:"Invalid Email or Password"},{status:400})
         }
         const passwordMatch = await bcrypt.compare(password,user.password);
         if(!passwordMatch){
-            return NextResponse.json({
-                message:"Invalid Input"
+            return NextResponse.json({error:"Invalid Email or Password"
             },{status:400})
         }
         const tokenData= {
@@ -33,7 +30,6 @@ export async function POST(req:Request){
         const response = NextResponse.json({message:"Login Successful"},{status:200})
         response.cookies.set("token",token,{httpOnly:true})
         return response;
-        return NextResponse.json({message:"Login Successfull"},{status:200})
     } catch (error:any) {
         return NextResponse.json({eror:error},{status:500})
     }

@@ -20,6 +20,7 @@ import Selection from "@/components/shadcn/Selection"
 import { Textarea } from "../ui/textarea"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import toast, { Toaster } from "react-hot-toast"
 
 type TaskFormProps = {
   post?:{
@@ -50,15 +51,18 @@ export default function TaskForm({post,action}: TaskFormProps) {
         try {
           if(action ==="Create"){
             await axios.post("/api/Task", data);
+            toast.success("Task Created Successfully")
           form.reset()
           router.push('/')
           }
           else{
             await axios.put(`/api/Task/Update?id=${post?._id}`, data);
+            toast.success("Task Updated Successfully")
             router.push('/')
           }
         } catch (error) {
           console.log(error)
+          toast.error("Something went wrong")
         }
       }
         const reset = () => {
@@ -126,6 +130,7 @@ export default function TaskForm({post,action}: TaskFormProps) {
         </div>
       </form>
     </Form>
+    <Toaster />
         </div>
     );
 }

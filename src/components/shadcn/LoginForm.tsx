@@ -20,6 +20,7 @@ import { FcGoogle } from "react-icons/fc";
 import {signIn} from "next-auth/react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -34,10 +35,15 @@ export default function SignUpForm() {
     })
     async function submit(values: z.infer<typeof LoginSchema>) {
         try {
-          await axios.post("/api/Login", values);
+          await toast.promise( axios.post("/api/Login", values),{
+            loading: "Logging in...",
+            success:"Login Successful",
+            error: "Invalid Email or Password",
+          })
           router.push("/");
         } catch (error) {
           console.log(error);
+          toast.error("Something went Wrong!")
         }
       }
   return (
@@ -73,7 +79,7 @@ export default function SignUpForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600">Login</Button>
+        <Button type="submit" className="w-full bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600 hover:text-white">Login</Button>
         <FormDescription className="text-center text-gray-500">Not have an Account? <Link href={`/Signup`} className="text-blue-500">Signup</Link></FormDescription>
 
         <div className="flex items-center gap-5">
@@ -84,6 +90,7 @@ export default function SignUpForm() {
         <h1 className="w-full flex justify-center items-center p-1 rounded-lg font-bold text-center bg-blue-700 text-white active:scale-95 active:bg-blue-600 hover:bg-blue-600 cursor-not-allowed">Signup with Google <FcGoogle className="pl-2" size={30} /></h1>
       </form>
       </div>
+      <Toaster />
     </Form>
   )
 }

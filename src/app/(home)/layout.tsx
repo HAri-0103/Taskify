@@ -2,6 +2,7 @@ import BottomBar from "@/components/shadcn/BottomBar";
 import Topbar from "@/components/shadcn/TopBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +21,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       <Topbar />
+      <Suspense>
             {children}
+      </Suspense>
       <BottomBar />
       </body>
     </html>
