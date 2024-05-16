@@ -62,11 +62,11 @@ export default function SignUpForm() {
             control={form.control}
             name="avatar"
             render={({ field }) => (
-                <FormItem className="flex justify-center items-center">
+                <FormItem className="flex flex-col h-[200px] justify-center items-center">
                     <FormControl>
                         <FileUploader fieldChange={field.onChange} />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500"/>
                 </FormItem>
             )}
         />

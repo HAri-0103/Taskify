@@ -37,7 +37,7 @@ export default function Home() {
       <Reorder.Group values={tasks} onReorder={setTasks} axis="y">
         {show?<div className="absolute top-24 w-full h-screen grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5 md:grid-cols-2 md:justify-items-center lg:grid-cols-3">
             {tasks.length>0?(tasks.map((task,index)=><Reorder.Item key={task._id} value={task} drag ><Taskcard key={index} task={task}/></Reorder.Item>))
-            :"There is No Task"}
+            :<div className="absolute w-screen h-screen text-center text-3xl font-bold">There is No task</div>}
         </div>:<div className="absolute top-24 w-full h-screen grid grid-flow-row justify-center overflow-y-scroll gap-y-4 pb-[195px] pt-5 md:grid-cols-2 md:justify-items-center lg:grid-cols-3"><SkeletonCard/> <SkeletonCard/> <SkeletonCard/></div>}
         </Reorder.Group>
       </div>
